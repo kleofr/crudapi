@@ -2,7 +2,7 @@ const userForm = document.getElementById('userForm');
 const userList = document.getElementById('userList');
 
 // Function to add a new user
-function addUser(event) {
+ function addUser(event) {
     event.preventDefault();
     const id = document.getElementById('id').value;
     const name = document.getElementById('name').value;
@@ -45,6 +45,57 @@ function fetchUser() {
             console.error('Error fetching users:', error);
         });
 }
+function updateUser(event) {
+    event.preventDefault();
+    const id = document.getElementById('updateid').value;
+    const name = document.getElementById('updateName').value;
+    const email = document.getElementById('updateEmail').value;
+
+    // Make a POST request to the backend to add the user
+    fetch('http://localhost:3000/update', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id, name, email })
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Log the response from the server
+        // Call the function to add the new user to the list
+        // Reset the form
+        updateForm.reset();
+        console.log("successful");
+    })
+    .catch(error => {
+        console.error('Error update user:', error);
+    });
+}
+
+function deleteUser(event) {
+    event.preventDefault();
+    const id = document.getElementById('deleteId').value;
+
+    // Make a POST request to the backend to add the user
+    fetch('http://localhost:3000/delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Log the response from the server
+        // Call the function to add the new user to the list
+        // Reset the form
+        deleteForm.reset();
+        console.log("successful");
+    })
+    .catch(error => {
+        console.error('Error delete user:', error);
+    });
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -84,4 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener for form submission
     createForm.addEventListener('submit', addUser);
+    updateForm.addEventListener('submit', updateUser);
+    deleteForm.addEventListener('submit', deleteUser);
 });

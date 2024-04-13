@@ -49,18 +49,45 @@ app.get('/read', (req, res) => {
 
 // update information
 app.post('/update', (req, res) => {
-    const { name, email } = req.body;
-    db.query('INSERT INTO users_table (name, email) VALUES (?, ?)', [name, email], (err, result) => {
-        if (err) throw err;
+    const { id, name, email } = req.body;
+    // Check if ID, name, and email are provided
+    if (!id || !name || !email) {
+        res.status(400).send('ID, name, and email are required for updating user');
+        return;
+    }
+    // Execute SQL query to update user data
+    db.query('UPDATE users_table SET name = ?, email = ? WHERE id = ?', [name, email, id], (err, result) => {
+        if (err) {
+            res.status(500).send('Error updating user');
+            return;
+        }
+        if (result.affectedRows === 0) {
+            res.status(404).send('User with provided ID not found');
+            return;
+        }
         res.send('User updated successfully');
     });
 });
 
 // delete information
 app.post('/delete', (req, res) => {
-    const { name, email } = req.body;
-    db.query('INSERT INTO users_table (name, email) VALUES (?, ?)', [name, email], (err, result) => {
-        if (err) throw err;
+    const { id } = req.body;
+    // Check if ID is provided
+    if (!id) {
+        res.status(400).send('ID is required for deleting user');
+        return;
+    }
+    // Execute SQL query to delete user data
+    db.query('DELETE FROM users_table WHERE id = ?', [id], (err, result) => {
+        if (err) {
+            res.status(500).send('Error deleting user');
+            return;
+        }
+        // Check if any rows were affected (if user with given ID existed)
+        if (result.affectedRows === 0) {
+            res.status(404).send('User with provided ID not found');
+            return;
+        }
         res.send('User deleted successfully');
     });
 });
