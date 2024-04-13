@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>User Management System</h1>
+
+    <!-- Buttons for CRUD operations -->
+    <div id="crudOptions">
+        <button id="createOption">Create</button>
+        <button id="readOption">Read</button>
+        <button id="updateOption">Update</button>
+        <button id="deleteOption">Delete</button>
+    </div>
+
+    <!-- Create User Form -->
+    <form id="createForm" style="display: none;">
+        <h2>Create User</h2>
+        <input type="number" id="id" placeholder="Id">
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <button type="submit">Add User</button>
+    </form>
+
+    <!-- Read Users Section -->
+    <div id="readSection" style="display: none;">
+        <h2>Read Users</h2>
+        <ul id="userList"></ul>
+    </div>
+
+    <!-- Update User Form -->
+    <form id="updateForm" style="display: none;">
+        <h2>Update User</h2>
+        <input type="text" id="updateName" placeholder="New Name">
+        <input type="email" id="updateEmail" placeholder="New Email">
+        <button type="submit">Update User</button>
+    </form>
+
+    <!-- Delete User Form -->
+    <form id="deleteForm" style="display: none;">
+        <h2>Delete User</h2>
+        <input type="text" id="deleteName" placeholder="Name">
+        <input type="email" id="deleteEmail" placeholder="Email">
+        <button type="submit">Delete User</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

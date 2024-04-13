@@ -1,0 +1,6 @@
+MySQL Legacy Authentication
+
+npm install express
+npm install MySQL
+npm install cors
+npm install body-parser
