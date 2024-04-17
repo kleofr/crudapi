@@ -36,10 +36,15 @@ function fetchUser() {
             userList.innerHTML = '';
             // Iterate over the fetched users and add them to the list
             data.forEach(user => {
-                const li = document.createElement('li');
-                li.textContent = `ID: ${user.id}, Name: ${user.name}, Email: ${user.email}`;
-                userList.appendChild(li);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                `;
+                document.getElementById('userList').appendChild(row);
             });
+            
         })
         .catch(error => {
             console.error('Error fetching users:', error);
@@ -97,6 +102,56 @@ function deleteUser(event) {
     });
 }
 
+function adminLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+
+    // Make a POST request to the backend to add the user
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status == 200){
+                console.log('User logged in')
+                
+            }
+            if(response.status == 404){
+                console.log('Credentials invalid');
+            }
+        }
+    })
+    .then(data => {
+        console.log(data); // Log the response from the server
+        // Call the function to add the new user to the list
+        // Reset the form
+        loginForm.reset();
+        console.log("successful");
+    })
+    .catch(error => {
+        console.error('Error checking for credentials:', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Add click event listener to logout button
+    logoutBtn.addEventListener('click', function () {
+        // Implement logout logic here
+        // For example, clearing user credentials and redirecting to login page
+        alert('Logging out...');
+        // Redirect to the login page
+        window.location.href = 'login.html';
+    });
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     const crudOptions = document.getElementById('crudOptions');
@@ -105,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateForm = document.getElementById('updateForm');
     const deleteForm = document.getElementById('deleteForm');
     const userList = document.getElementById('userList');
+    const loginForm = document.getElementById('loginForm');
 
     // Function to show form/section based on user selection
     function showForm(formElement) {
@@ -133,8 +189,10 @@ document.addEventListener('DOMContentLoaded', function () {
         showForm(deleteForm);
     });
 
+
     // Event listener for form submission
     createForm.addEventListener('submit', addUser);
     updateForm.addEventListener('submit', updateUser);
     deleteForm.addEventListener('submit', deleteUser);
+    loginForm.addEventListener('submit', adminLogin);
 });

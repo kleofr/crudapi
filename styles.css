@@ -1,66 +1,106 @@
-/* styles.css */
-
-/* Center the content */
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
     font-family: Arial, sans-serif;
-}
-
-/* Style the title */
-h1 {
-    margin-bottom: 20px;
-}
-
-/* Style the CRUD option buttons */
-#crudOptions {
-    margin-bottom: 20px;
-}
-
-#crudOptions button {
-    margin: 0 10px;
-}
-
-/* Style the forms and sections */
-form, #readSection {
-    width: 300px;
-    margin-bottom: 20px;
-}
-
-form input {
-    width: calc(100% - 10px);
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-form button {
-    width: 100%;
-    padding: 8px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* Style the list */
-#userList {
-    list-style: none;
+    background-color: #f7f7f7;
+    margin: 0;
     padding: 0;
 }
 
-#userList li {
-    margin-bottom: 10px;
+h1 {
+    text-align: center;
+    margin-top: 20px;
 }
 
-.delete {
-    margin-left: 10px;
-    padding: 3px 5px;
-    background-color: #dc3545;
+#crudOptions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.crudBtns {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.crudBtns:hover {
+    background-color: #45a049;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="email"],
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #4caf50;
     color: white;
     border: none;
     cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#userTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#userTable th, #userTable td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+#userTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#userTable tr:hover {
+    background-color: #f5f5f5;
+}
+
+#logoutBtn {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#logoutBtn:hover {
+    background-color: #d32f2f;
 }

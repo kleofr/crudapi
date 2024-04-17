@@ -31,6 +31,18 @@ app.use(cors());
 // Get all users
 
 // Add new user
+app.post('/login', (req,res)=> {
+    const { username, password } = req.body;
+    db.query('SELECT * FROM users_login WHERE username = ? AND password = ?', [username, password], (err, result) => {
+        // Check if any rows were affected (if user with given ID existed)
+        if(err) throw err;
+        if (result.affectedRows === 0) {
+            res.status(404).send('User with provided ID not found');
+            return;
+        }
+        res.status(200).send('User logged in Successfully');
+    })
+})
 app.post('/create', (req, res) => {
     const {id, name, email } = req.body;
     db.query('INSERT INTO users_table (id, name, email) VALUES (?, ?, ?)', [id, name, email], (err, result) => {

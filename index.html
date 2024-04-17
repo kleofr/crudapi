@@ -11,10 +11,11 @@
 
     <!-- Buttons for CRUD operations -->
     <div id="crudOptions">
-        <button id="createOption">Create</button>
-        <button id="readOption">Read</button>
-        <button id="updateOption">Update</button>
-        <button id="deleteOption">Delete</button>
+        <button class="crudBtns" id="createOption">Create</button>
+        <button class="crudBtns" id="readOption">Read</button>
+        <button class="crudBtns" id="updateOption">Update</button>
+        <button class="crudBtns" id="deleteOption">Delete</button>
+        <button class="crudBtns" id="logoutBtn">Logout</button>
     </div>
 
     <!-- Create User Form -->
@@ -29,8 +30,19 @@
     <!-- Read Users Section -->
     <div id="readSection" style="display: none;">
         <h2>Read Users</h2>
-        <ul id="userList"></ul>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="userList"></tbody>
+        </table>
     </div>
+    
+    
 
     <!-- Update User Form -->
     <form id="updateForm" style="display: none;">
